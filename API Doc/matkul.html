@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Request Form</title>
+</head>
+<body>
+  <form id="matkulForm">
+    <label for="TahunAkademik">Tahun Akademik:</label>
+    <input type="text" id="TahunAkademik" name="TahunAkademik" required> <br>
+    
+    <label for="Semester">Semester:</label> <br>
+    <input type="radio" name="Semester" id="Semester" value="All"> All <br>
+    <input type="radio" name="Semester" id="Semester" value="Ganjil"> Ganjil <br>
+    <input type="radio" name="Semester" id="Semester" value="Genap"> Genap <br>
+    <input type="radio" name="Semester" id="Semester" value="AlihTahun"> AlihTahun <br>
+    
+    <label for="Strata">Strata:</label> <br>
+    <input type="radio" name="Strata" id="Strata" value="All"> All <br>
+    <input type="radio" name="Strata" id="Strata" value="S0"> S0 <br>
+    <input type="radio" name="Strata" id="Strata" value="S1"> S1 <br>
+    <input type="radio" name="Strata" id="Strata" value="S2"> S2 <br>
+    <input type="radio" name="Strata" id="Strata" value="S3"> S3 <br>
+    <input type="radio" name="Strata" id="Strata" value="Profesi"> Profesi <br>
+    <input type="radio" name="Strata" id="Strata" value="D4"> D4 <br>
+    
+    <label for="search">Search:</label>
+    <input type="text" id="search" name="search" required><br>
+    
+    <input type="submit" value="Cari">
+  </form>
+
+  <script>
+    document.getElementById("matkulForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent the form from submitting normally
+
+      // Get form data
+      const formData = {
+        TahunAkademik: document.getElementById("TahunAkademik").value,
+        Semester: document.getElementById("Semester").value,
+        Strata: document.getElementById("Strata").value,
+        search: document.getElementById("search").value,
+        password: document.getElementById("password").value,
+      };
+
+      // Make API request
+      fetch("https://api.ipb.ac.id/v1/Authentication/LoginMahasiswa", {
+        method: "GET",
+        headers: {
+          "Accept": "text/plain",
+          "Content-Type": "application/json-patch+json",
+          "X-IPBAPI-TOKEN": "Bearer cf6d7fb2-b407-4ef1-838d-02c0543a5385"
+        },
+        body: JSON.stringify(formData) // Convert form data to JSON
+      })
+      .then(response => response.json()) // Convert response to text
+      .then(data => {
+        // Display response
+        console.log(data)
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      });
+    });
+  </script>
+</body>
+</html>

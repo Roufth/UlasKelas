@@ -1,0 +1,375 @@
+{
+  "swagger": "2.0",
+  "basePath": "/api",
+  "info": {
+    "title": "KRS - Build 9985",
+    "version": "v1"
+  },
+  "host": "krs.ipb.ac.id",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/DetailMataKuliah": {
+      "get": {
+        "tags": [
+          "InfoMataKuliah"
+        ],
+        "summary": "Mendapatkan detail mata kuliah",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "kurikulumId",
+            "description": "KurikulumID mata kuliah",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detail mata kuliah",
+            "schema": {
+              "$ref": "#/definitions/DetailMk"
+            }
+          }
+        }
+      }
+    },
+    "/DetailKelas": {
+      "get": {
+        "tags": [
+          "InfoMataKuliah"
+        ],
+        "summary": "Mendapatkan detail kelas",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "jadwalKuliahId",
+            "description": "ID jadwal",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "query",
+            "name": "strata",
+            "description": "Strata pemilik jadwal",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detail kelas/jadwal",
+            "schema": {
+              "$ref": "#/definitions/DetailKelas"
+            }
+          }
+        }
+      }
+    },
+    "/StatistikNilai": {
+      "get": {
+        "tags": [
+          "InfoMataKuliah"
+        ],
+        "summary": "Mendapatkan statistik jumlah perolehan per huruf mutu",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "mataKuliahId",
+            "description": "ID matakuliah",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List statistik per huruf mutu",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/StatistikNilai"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/StokSupportingCourse": {
+      "get": {
+        "tags": [
+          "InfoMataKuliah"
+        ],
+        "summary": "Mendapatkan daftar stok SC",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "tahunSemesterId",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/StokMataKuliahItem"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "MataKuliahPrasyarat": {
+      "type": "object",
+      "properties": {
+        "KurikulumId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Kode": {
+          "type": "string"
+        },
+        "Nama": {
+          "type": "string"
+        }
+      }
+    },
+    "KelasMk": {
+      "type": "object",
+      "properties": {
+        "JadwalKuliahId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "JenisKelas": {
+          "type": "string"
+        },
+        "KelasParalel": {
+          "type": "string"
+        },
+        "Jadwal": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "DetailMk": {
+      "type": "object",
+      "properties": {
+        "Kode": {
+          "type": "string"
+        },
+        "Nama": {
+          "type": "string"
+        },
+        "SksNama": {
+          "type": "string"
+        },
+        "MataKuliahPrasyarat": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MataKuliahPrasyarat"
+          }
+        },
+        "ListJadwal": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/KelasMk"
+          }
+        },
+        "Strata": {
+          "type": "string"
+        },
+        "Deskripsi": {
+          "type": "string"
+        },
+        "Semester": {
+          "type": "string"
+        },
+        "MataKuliahId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "JumlahKelasKuliah": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "JumlahKelasPraktikum": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "JumlahKelasResponsi": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        }
+      }
+    },
+    "Strata": {
+      "enum": [
+        "D3",
+        "S1",
+        "S2",
+        "S3",
+        "PRF",
+        "D4"
+      ],
+      "type": "string"
+    },
+    "PesertaKelas": {
+      "type": "object",
+      "properties": {
+        "MahasiswaId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Nim": {
+          "type": "string"
+        },
+        "Nama": {
+          "type": "string"
+        },
+        "StatusMataKuliah": {
+          "type": "string"
+        }
+      }
+    },
+    "PengajarKelas": {
+      "type": "object",
+      "properties": {
+        "PegawaiId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Nip": {
+          "type": "string"
+        },
+        "Nama": {
+          "type": "string"
+        }
+      }
+    },
+    "DetailKelas": {
+      "type": "object",
+      "properties": {
+        "KurikulumId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Kode": {
+          "type": "string"
+        },
+        "Nama": {
+          "type": "string"
+        },
+        "SksNama": {
+          "type": "string"
+        },
+        "Jadwal": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "JenisKelas": {
+          "type": "string"
+        },
+        "KelasParalel": {
+          "type": "string"
+        },
+        "ProgramStudiPeserta": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "KuotaMayor": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "KuotaMinor": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "KuotaInterdept": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "KuotaSc": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "MahasiswaPeserta": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PesertaKelas"
+          }
+        },
+        "DosenPengajar": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PengajarKelas"
+          }
+        }
+      }
+    },
+    "StatistikNilai": {
+      "type": "object",
+      "properties": {
+        "HurufMutu": {
+          "type": "string"
+        },
+        "Jumlah": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "StokMataKuliahItem": {
+      "type": "object",
+      "properties": {
+        "KurikulumId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Kode": {
+          "type": "string"
+        },
+        "Nama": {
+          "type": "string"
+        },
+        "Sks": {
+          "type": "string"
+        },
+        "TotalKuota": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "TotalAmbil": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

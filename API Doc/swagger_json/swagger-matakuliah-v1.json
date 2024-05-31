@@ -1,0 +1,369 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Mata Kuliah API",
+    "version": "v1"
+  },
+  "host": "api.ipb.ac.id",
+  "basePath": "/v1/MataKuliah",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/DepartemenSaya": {
+      "get": {
+        "tags": [
+          "MataKuliah"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "TahunAkademik",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "Semester",
+            "type": "string",
+            "enum": [
+              "All",
+              "Ganjil",
+              "Genap",
+              "AlihTahun"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "Strata",
+            "type": "string",
+            "enum": [
+              "All",
+              "S0",
+              "S1",
+              "S2",
+              "S3",
+              "Profesi",
+              "D4"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-IPBAPI-TOKEN",
+            "required": true,
+            "type": "string",
+            "default": "Bearer 1504db6c-168e-4a3e-8b9f-0b1eb52b5aab"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MataKuliahItem"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Departemen": {
+      "get": {
+        "tags": [
+          "MataKuliah"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "departemenId",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "query",
+            "name": "TahunAkademik",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "Semester",
+            "type": "string",
+            "enum": [
+              "All",
+              "Ganjil",
+              "Genap",
+              "AlihTahun"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "Strata",
+            "type": "string",
+            "enum": [
+              "All",
+              "S0",
+              "S1",
+              "S2",
+              "S3",
+              "Profesi",
+              "D4"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-IPBAPI-TOKEN",
+            "required": true,
+            "type": "string",
+            "default": "Bearer 1504db6c-168e-4a3e-8b9f-0b1eb52b5aab"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MataKuliahItem"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/PerSemester": {
+      "get": {
+        "tags": [
+          "MataKuliah"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "TahunAkademik",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "Semester",
+            "type": "string",
+            "enum": [
+              "All",
+              "Ganjil",
+              "Genap",
+              "AlihTahun"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "Strata",
+            "type": "string",
+            "enum": [
+              "All",
+              "S0",
+              "S1",
+              "S2",
+              "S3",
+              "Profesi",
+              "D4"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-IPBAPI-TOKEN",
+            "required": true,
+            "type": "string",
+            "default": "Bearer 1504db6c-168e-4a3e-8b9f-0b1eb52b5aab"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MataKuliahItem"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Peserta": {
+      "get": {
+        "tags": [
+          "PesertaMataKuliah"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "KodeMk",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "TahunAkademik",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "Semester",
+            "type": "string",
+            "enum": [
+              "All",
+              "Ganjil",
+              "Genap",
+              "AlihTahun"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-IPBAPI-TOKEN",
+            "required": true,
+            "type": "string",
+            "default": "Bearer 1504db6c-168e-4a3e-8b9f-0b1eb52b5aab"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PesertaMataKuliahItem"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Koordinator": {
+      "type": "object",
+      "properties": {
+        "PegawaiId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Nama": {
+          "type": "string"
+        },
+        "NamaGelar": {
+          "type": "string"
+        },
+        "Nip": {
+          "type": "string"
+        }
+      }
+    },
+    "MataKuliahItem": {
+      "type": "object",
+      "properties": {
+        "KurikulumId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "MataKuliahId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Kode": {
+          "type": "string"
+        },
+        "Nama": {
+          "type": "string"
+        },
+        "NamaEn": {
+          "type": "string"
+        },
+        "Sks": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "SksKuliah": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "SksPraktikum": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Deskripsi": {
+          "type": "string"
+        },
+        "DeskripsiEn": {
+          "type": "string"
+        },
+        "Koordinator": {
+          "$ref": "#/definitions/Koordinator"
+        }
+      }
+    },
+    "PesertaMataKuliahItem": {
+      "type": "object",
+      "properties": {
+        "MahasiswaId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Nim": {
+          "type": "string"
+        },
+        "Nama": {
+          "type": "string"
+        },
+        "SemesterMahasiswa": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

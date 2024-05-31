@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block style %}
+a {
+  text-decoration: none;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #033D80;
+}
+
+#login {
+  display: flex;
+  z-index: 1;
+  justify-content: space-around;
+  gap: 1rem;
+  margin-top: 160px;
+}
+
+#login .profile-page {
+  position: relative;
+  width: 30%;
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #033d80;
+  color: white;
+}
+
+#login .profile-page img {
+  width: 100%;
+  height: auto;
+}
+
+#login .profile-page p {
+  font-size: 1rem;
+  font-family: 'Plus Jakarta Sans';
+}
+
+#login .login-page {
+  width: 40%;
+  height: 100;
+  padding: 1rem;
+  display: inline-block;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  background-color: #ffffff;
+  border-radius: 15px;
+}
+
+#login .login-page h1 {
+  font-family: 'Plus Jakarta Sans';
+  font-size: 2rem;
+  text-align: center;
+  color: #033d80;
+}
+
+#login .login-oauth {
+  width: 80%;
+  position: relative;
+  border-radius: 15px;
+  background-color: #fff;
+  border: 1px solid #8c8c8c;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  height: 49px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  color: #303030;
+  font-family: 'Plus Jakarta Sans';
+  font-size: 1rem;
+}
+
+#login .login-oauth img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+#login .login-oauth:hover {
+  background-color: #f1f1f1;
+}
+
+#login .login-oauth a {
+  text-decoration: none;
+  color: #303030;
+  margin-top: 2rem;
+}
+
+#login .login-oauth p {
+  font-family: 'Plus Jakarta Sans';
+  font-size: 1rem;
+  color: #303030;
+}
+
+{% endblock style %}
+
+{% block title %}Login to UlasKelas{% endblock title %}
+
+{% block content %}
+
+<div id="login">
+  <div class="profile-page">
+    {% load static %}
+      <img class="logo" src="{% static 'images/Logo-Login.svg' %}" alt="UlasKelas">
+      <p>UlasKelas adalah platform ulasan mata kuliah SC yang dirancang khusus bagi mahasiswa IPB University dalam berbagi informasi terkait mata kuliah SC</p>
+  </div>
+  <div class="login-page">
+    <h1>Login UlasKelas</h1>
+    <a class="login-oauth" href={% url 'social:begin' 'google-oauth2' %}>
+        <img src="{% static 'images/ipb.png' %}" alt="IPB University">
+        <p>Login menggunakan akun email IPB disini</p> <br> <br>
+    </a>
+  </div>
+</div>
+{% endblock content %}

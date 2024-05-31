@@ -1,0 +1,798 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block style %}
+a {
+  text-decoration: none;
+}
+.header {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  height: 137px;
+  top: -2px;
+  left: 0;
+  background-color: #033D80;
+}
+
+.header > .profile {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  top: 39px;
+  left: 1400px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.header .logo {
+  position: absolute;
+  width: 180px;
+  height: 62px;
+  top: 37px;
+  left: 41px;
+  background-size: cover;
+  background-position: 50% 50%;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+main {
+  display: flex;
+  z-index: 1;
+  justify-content: space-around;
+  gap: 1rem;
+  margin-top: 160px;
+}
+#main_left {
+  width: 30%;
+  padding: 1rem;
+  border: 4px solid;
+  border-radius: 3px;
+  border-color: #85858561;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.Kode-Mata-Kuliah {
+  position: absolute;
+  font-family: "Plus Jakarta Sans-Bold", Helvetica;
+  font-weight: 700;
+  color: #505050;
+  font-size: 34px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.Nama-Mata-Kuliah {
+  position: absolute;
+  margin-top: 1rem;
+  font-family: "Plus Jakarta Sans-Regular", Helvetica;
+  font-weight: 400;
+  color: #187BCD;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.SKS-Mata-Kuliah {
+  position: absolute;
+  margin-top: 3rem;
+  font-family: "Plus Jakarta Sans-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+hr {
+  margin-top: 3.2em;
+  border: 0.5px solid;
+}
+
+.Rataan {
+  position: absolute;
+  margin-top: 1rem;
+  font-family: "Plus Jakarta Sans-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.nilai-rataan {
+  display: flex;
+  margin-top: 1.5rem;
+  justify-content: space-around;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  gap: 1rem;
+}
+
+.badge {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+  align-items: center;
+}
+
+.nilai-badge {
+  width: 50px;
+  height: 50px;
+  border-radius: 3px;
+  font-family: "Plus Jakarta Sans-Regular", Helvetica;
+  font-weight: 100;
+  color: #FFFFFF;
+  background-color: #187BCD;
+  font-size: 15px;
+}
+
+.deskripsi-badge {
+  width: 90px;
+  margin-top: 2px;
+  font-family: "Plus Jakarta Sans-Regular", Helvetica;
+  font-weight: 100;
+  color: #187BCD;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+  text-align: center;
+}
+
+
+
+#myChart .Deskripsi-Mata-Kuliah {
+  position: absolute;
+  margin-top: 2rem;
+  font-family: "Plus Jakarta Sans-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+  align-items: center;
+}
+
+#main_right {
+  width: 60%;
+  height: 100%;
+  padding: 1rem;
+  border: 4px solid;
+  border-radius: 3px;
+  border-color: #85858561;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+#kuantitatif {
+  padding: 1rem;
+  border: 4px solid;
+  border-radius: 3px;
+  border-color: #85858561;
+  overflow-y: auto;
+}
+
+#kuantitatif_top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+#kuantitatif_top .Judul-Kuantitatif {
+  font-family: "Plus Jakarta Sans-Bold", Helvetica;
+  font-weight: 700;
+  color: #505050;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+#kuantitatif_top .Tombol-Add-Rate a {
+  font-family: "Plus Jakarta Sans-Regular", Helvetica;
+  font-weight: 400;
+  text-decoration: none;
+  color: #FFFFFF;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #4FB84D;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+  cursor: pointer;
+}
+#kuantitatif_top .Edit-Review a {
+  background-color: #4DA6FF;
+}
+
+#kuantitatif_bot {
+  overflow-y: auto;
+  border: 4px solid;
+  border-radius: 3px;
+  border-color: #85858561;
+  font-family: "Plus Jakarta Sans-Regular", Helvetica;
+  font-weight: 100;
+  color: #000000;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+  align-items: center;
+}
+
+#kuantitatif_bot td, th {
+  text-align: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid #85858561;
+}
+
+#kuantitatif table {
+  width: 100%;
+  border-collapse: collapse
+  align-items: center;
+}
+
+#kualitatif {
+  padding: 1rem;
+  border: 4px solid;
+  border-radius: 3px;
+  border-color: #85858561;
+}
+#kualitatif_top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+#kualitatif_top .Judul-Kualitatif {
+  font-family: "Plus Jakarta Sans-Bold", Helvetica;
+  font-weight: 700;
+  color: #505050;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+#kualitatif_top .Tombol-Add-Review a {
+  font-family: "Plus Jakarta Sans-Regular", Helvetica;
+  font-weight: 400;
+  text-decoration: none;
+  color: #FFFFFF;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #4FB84D;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+  cursor: pointer;
+}
+#kualitatif_top .Edit-Review a {
+  background-color: #4DA6FF;
+}
+
+#kualitatif_bot {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-family: "Plus Jakarta Sans-Regular", Helvetica;
+}
+
+#kualitatif_bot li {
+  padding: 1rem;
+  border: 4px solid;
+  border-radius: 3px;
+  border-color: #85858561;
+}
+
+.kualitatif_tanggal {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+#user_review {
+  position: relative;
+  margin-bottom: 12px;
+}
+#user_review::after {
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  display: block;
+  content: "";
+  background-color: #85858561;
+  height: 4px;
+  width: 100%;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 3; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+  padding-top: 60px;
+  font-family: "Plus Jakarta Sans-Regular", Helvetica;
+  font-size: 15px
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: white;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label, input {
+  margin-bottom: 10px;
+}
+
+button[type="submit"] {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Plus Jakarta Sans-Regular", Helvetica;
+}
+
+.pop-up {
+  display: none;
+  position: absolute;
+  top: 100px;
+  right: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  z-index: 3;
+}
+
+.pop-up a {
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.pop-up a:hover {
+  text-decoration: underline;
+}
+
+{% endblock style %}
+
+{% block title %}Detail Matkul{% endblock title %}
+
+{% block content %}
+<h1></h1>
+<main>
+  <div class="header">
+    {% load static %}
+    <a class="profile" href="{% url "edit_profile" %}">
+      {% if user.profile.profile_image.url %}
+      <img src="{{ user.profile.profile_image.url }}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 50%;" alt="profile" class="close">
+      {% else %}
+      <img src="{% static 'images/Profile.svg' %}" alt="profile" class="profile">
+      {% endif %}
+      <p>{{ user.username }}</p>
+    </a>
+    <a href="{% url 'index.html' %}">
+      <img class="logo" src="{% static 'images/Logo.svg' %}" alt="UlasKelas">
+    </a>
+ </div>
+  
+  <div class="pop-up" id="profilePopup">
+    <p>
+        <a href="{% url "mylogout" %}">Logout</a>
+    </p>
+  </div>
+
+    <div id="main_left">
+      <div class="Kode-Mata-Kuliah">{{ DetailMataKuliah.Kode }}</div> <br>
+      <div class="Nama-Mata-Kuliah">{{DetailMataKuliah.Nama}}</div> <br>
+      <div class="SKS-Mata-Kuliah">SKS: {{ DetailMataKuliah.SksNama}}</div> <br>
+      <hr>
+      <div id="averages">
+        {% if averages.jumlah %}
+        <div class="Rataan">Rataan: {{ averages.jumlah }} Mahasiswa</div> <br>
+        <div class="nilai-rataan">
+          <div class="badge">
+            <div class="nilai-badge">
+              <p>{{ averages.kualitas_pengajar }}</p>
+            </div>
+            <div class="deskripsi-badge">
+              <p>Kualitas Pengajar</p>
+            </div>
+          </div>
+
+          <div class="badge">
+            <div class="nilai-badge">
+              <p>{{ averages.tingkat_kesulitan }}</p>
+            </div>
+            <div class="deskripsi-badge">
+              <p>Tingkat Kesulitan</p>
+            </div>
+          </div>
+
+          <div class="badge">
+            <div class="nilai-badge">
+              <p>{{ averages.rekomendasi_non_jurusan }}</p>
+            </div>
+            <div class="deskripsi-badge">
+              <p>Rekomendasi Non Jurusan</p>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+      <div id="myChart">
+      </div>
+      <div class="Deskripsi-Mata-Kuliah">{{ DetailMataKuliah.Deskripsi|striptags }}</div> <br>
+    </div>
+
+    <!-- The Modal -->
+    <div id="modal-rate" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content"> 
+        <span class="close">&times;</span>
+        <h1>Berikan Ratingmu</h1> <br>
+        <b>Mata Kuliah: {{ DetailMataKuliah.Nama }}</b> <br> <br>
+        {% if review_kuantitatif_user %}
+        <form method="POST" action="{% url "edit_review_kuantitatif" review_kuantitatif_user.id %}">
+        {% else %}
+        <form method="POST" action="{% url "buat_review_kuantitatif" %}">
+        {% endif %}
+          {% csrf_token %}
+          <input type="hidden" name="kurikulumId" value="{{ kurikulumId }}">
+        
+          <label for="kualitas_matkul">Kualitas Matkul:</label>
+          <input type="number" name="kualitas_matkul" id="kualitas_matkul" min="1" max="5" required value="{{ review_kuantitatif_user.kualitas_matkul }}"> 
+        
+          <label for="kualitas_pengajar">Kualitas Pengajar:</label>
+          <input type="number" name="kualitas_pengajar" id="kualitas_pengajar" min="1" max="5" required value="{{ review_kuantitatif_user.kualitas_pengajar }}"> 
+        
+          <label for="tingkat_kesulitan">Tingkat Kesulitan:</label>
+          <input type="number" name="tingkat_kesulitan" id="tingkat_kesulitan" min="1" max="5" required value="{{ review_kuantitatif_user.tingkat_kesulitan }}"> 
+        
+          <label for="jumlah_materi">Jumlah Materi:</label>
+          <input type="number" name="jumlah_materi" id="jumlah_materi" min="1" max="5" required value="{{ review_kuantitatif_user.jumlah_materi }}"> 
+        
+          <label for="jumlah_tugas">Jumlah Tugas:</label>
+          <input type="number" name="jumlah_tugas" id="jumlah_tugas" min="1" max="5" required value="{{ review_kuantitatif_user.jumlah_tugas }}"> 
+        
+          <label for="tingkat_ketertarikan">Tingkat Ketertarikan:</label>
+          <input type="number" name="tingkat_ketertarikan" id="tingkat_ketertarikan" min="1" max="5" required value="{{ review_kuantitatif_user.tingkat_ketertarikan }}"> 
+        
+          <label for="kualitas_asisten">Kualitas Asisten:</label>
+          <input type="number" name="kualitas_asisten" id="kualitas_asisten" min="1" max="5" required value="{{ review_kuantitatif_user.kualitas_asisten }}"> 
+        
+          <label for="rekomendasi_non_jurusan">Rekomendasi Non Jurusan:</label>
+          <input type="number" name="rekomendasi_non_jurusan" id="rekomendasi_non_jurusan" min="1" max="5" required value="{{ review_kuantitatif_user.rekomendasi_non_jurusan }}"> 
+        
+          <input type="submit" value="Kirim">
+          {% comment %} kualitas_matkul = models.FloatField()
+          kualitas_pengajar = models.FloatField()
+          tingkat_kesulitan = models.FloatField()
+          jumlah_materi = models.FloatField()
+          jumlah_tugas = models.FloatField()
+          tingkat_ketertarikan = models.FloatField()
+          kualitas_asisten = models.FloatField()
+          rekomendasi_non_jurusan = models.FloatField() {% endcomment %}
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal pop up untuk input review data kualitatif -->
+    <div id="modal-review" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content"> 
+        <span class="close">&times;</span>
+        <h1>Berikan Reviewmu</h1> <br>
+        <b>Mata Kuliah: {{ DetailMataKuliah.Nama }}</b> <br> <br>
+        {% if review_kualitatif_user %}
+        <form method="POST" action="{% url "edit_review_kualitatif" review_kualitatif_user.id %}">
+        {% else %}
+        <form method="POST" action="{% url "buat_review_kualitatif" %}">
+        {% endif %}
+          {% csrf_token %}
+          <input type="hidden" name="kurikulumId" value="{{ kurikulumId }}">
+        
+          <label for="ulasan">Ulasan Matkul:</label> <br>
+          <textarea name="ulasan" id="ulasan" cols="30" rows="10">{{ review_kualitatif_user.ulasan }}</textarea> <br>
+        
+          <input type="submit" value="Kirim">
+        </form>
+      </div>
+    </div>
+
+
+    <div id="main_right">
+      <div id="kuantitatif">
+        <div id="kuantitatif_top">
+          <div class="Judul-Kuantitatif"><b>RATE</b></div>
+          {% if review_kuantitatif_user %}
+          <div class="Tombol-Add-Rate Edit-Review"><a id="openModalBtnRate" onclick="openModal()">Edit Rate</a></div>
+          {% else %}
+          <div class="Tombol-Add-Rate"><a id="openModalBtnRate" onclick="openModal()">Add Rate</a></div>
+          {% endif %}
+        </div>
+        <div id="kuantitatif_bot">
+          {% if review_kuantitatif %}
+          <table>
+            <tr>
+              <th>Reviewer</th>
+              <th>Kualitas Matkul</th>
+              <th>Kualitas Pengajar</th>
+              <th>Tingkat Kesulitan</th>
+              <th>Jumlah Materi</th>
+              <th>Jumlah Tugas</th>
+              <th>Tingkat Ketertarikan</th>
+              <th>Kualitas Asisten</th>
+              <th>Rekomendasi Non Jurusan</th>
+            </tr>
+
+            {% if review_kuantitatif_user %}
+            <tr>
+              <td>Anda</td>
+              <td>{{ review_kuantitatif_user.kualitas_matkul }}</td>
+              <td>{{ review_kuantitatif_user.kualitas_pengajar }}</td>
+              <td>{{ review_kuantitatif_user.tingkat_kesulitan }}</td>
+              <td>{{ review_kuantitatif_user.jumlah_materi }}</td>
+              <td>{{ review_kuantitatif_user.jumlah_tugas }}</td>
+              <td>{{ review_kuantitatif_user.tingkat_ketertarikan }}</td>
+              <td>{{ review_kuantitatif_user.kualitas_asisten }}</td>
+              <td>{{ review_kuantitatif_user.rekomendasi_non_jurusan }}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            {% endif %}
+
+            {% for i in review_kuantitatif %}
+              {% if i.mahasiswa.id != user.id %}
+              <tr>
+                <td>{{ i.mahasiswa.username }}</td>
+                <td>{{ i.kualitas_matkul }}</td>
+                <td>{{ i.kualitas_pengajar }}</td>
+                <td>{{ i.tingkat_kesulitan }}</td>
+                <td>{{ i.jumlah_materi }}</td>
+                <td>{{ i.jumlah_tugas }}</td>
+                <td>{{ i.tingkat_ketertarikan }}</td>
+                <td>{{ i.kualitas_asisten }}</td>
+                <td>{{ i.rekomendasi_non_jurusan }}</td>
+              </tr>
+              {% endif %}
+            {% endfor %}
+          </table>
+          {% else %}
+          <div id="kuantitatif_kosong">
+            Belum ada data. Jadilah yang pertama memberikan ulasan!
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div id="kualitatif">
+        <div id="kualitatif_top">
+          <div class="Judul-Kualitatif"><b>REVIEW</b></div>
+          {% if review_kualitatif_user %}
+          <div class="Tombol-Add-Review Edit-Review"><a id="openModalBtnReview" onclick="openModal()">Edit Review</a></div>
+          {% else %}
+          <div class="Tombol-Add-Review"><a id="openModalBtnReview" onclick="openModal()">Add Review</a></div>
+          {% endif %}
+        </div>
+        <ul id="kualitatif_bot">
+          {% if review_kualitatif %}
+            {% if review_kualitatif_user %}
+            <li id="user_review">
+              <div class="kualitatif_tanggal">
+                <div><b>Anda</b></div>
+                <div><b>{{ review_kualitatif_user.tanggal|date:"d M Y" }}</b></div>
+              </div>
+              {{ review_kualitatif_user.ulasan }}
+            </li>
+            {% endif %}
+
+            {% for i in review_kualitatif %}
+              {% if i.mahasiswa.id != user.id %}
+              <li>
+                <div class="kualitatif_tanggal">
+                  <div><b>{{ i.mahasiswa.username }}</b></div>
+                  <div><b>{{ i.tanggal|date:"d M Y" }}</b></div>
+                </div>
+                {{ i.ulasan }}
+              </li>
+              {% endif %}
+            {% endfor %}
+          {% else %}
+          <div id="kualitatif_kosong">
+            Belum ada data. Jadilah yang pertama memberikan ulasan!
+          </div>
+          {% endif %}
+          
+        </ul>
+      </div>
+    </div>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var modal = document.getElementById("modal-rate");
+  var btn = document.getElementById("openModalBtnRate");
+  var span = document.getElementsByClassName("close")[1];
+
+  btn.onclick = function() {
+    modal.style.display = "block";
+  }
+
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var modal = document.getElementById("modal-review");
+  var btn = document.getElementById("openModalBtnReview");
+  var span = document.getElementsByClassName("close")[2];
+
+  btn.onclick = function() {
+    modal.style.display = "block";
+  }
+
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+});
+</script>
+
+
+<script>
+  const StatistikNilai = ({{ StatistikNilai | safe }});
+  let labels = StatistikNilai.map(item => item.HurufMutu);
+  let data = StatistikNilai.map(item => item.Jumlah);
+
+  // Create the bar chart
+  Plotly.newPlot('myChart', [{
+    x: labels,
+    y: data,
+    type: 'bar'
+  }], {
+    title: {
+      text: 'Sebaran Nilai (Semester-semester sebelumnya)',
+      font: {
+        size: 16, // Set the font size of the title
+      }
+    },
+    xaxis: {
+      title: 'Huruf Mutu'
+    },
+    yaxis: {
+      title: 'Jumlah'
+    },
+    // Adjust layout properties
+    width: 400, // Set the width to 400 pixels
+    height: 300, // Set the height to 300 pixels
+    margin: {
+      l: 75, // Left margin
+      r: 25, // Right margin
+      t: 50, // Top margin
+      b: 75, // Bottom margin
+    },
+    position : 'absolute',
+    font: {
+      family: 'Times New Roman'
+    }
+  });
+  
+  /*
+  175922 = OAK
+  175921 = Metkuan
+  175923 = DPP
+  175925 = GKV
+  175926 = Pemrog
+  175924 = Strukdat
+  175927 = RPL
+  */
+</script>
+
+<script>
+  const webalerts = new UIWebAlerts();
+
+  {% if messages %}
+    {% for message in messages %}
+    let tags = "{{ message.tags }}"
+    switch(tags) {
+      case "info": {
+        webalerts.createAlert("info", "{{ message }}", 10000);
+        break;
+      }
+      case "success": {
+        webalerts.createAlert("success", "{{ message }}", 10000);
+        break;
+      }
+      case "warning": {
+        webalerts.createAlert("warning", "{{ message }}", 10000);
+        break;
+      }
+      case "error": {
+        webalerts.createAlert("error", "{{ message }}", 10000);
+        break;
+      }
+    }
+    {% endfor %}
+  {% endif %}
+
+  {% comment %} webalerts.createAlert("success", "Sccess alert", 100000000);
+  webalerts.createAlert("info", "Info alert", 100000000);
+  webalerts.createAlert("warning", "Warning alert", 100000000);
+  webalerts.createAlert("error", "Error alert", 100000000); {% endcomment %}
+</script>
+{% endblock content %}
