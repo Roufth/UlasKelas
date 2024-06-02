@@ -33,6 +33,7 @@ To run tests, run the following command
 ## UML Diagram
 
 Use Case Diagram
+
 ![Use Case Diagram](https://github.com/pandutanjung/UlasKelas/assets/83505767/bec7b4f2-cd49-461d-b7e7-e24fae7fdebe)
 
 Activity Diagram
