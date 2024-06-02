@@ -41,6 +41,7 @@ Program akan ditampilkan di browser ketika mengklik link server yang muncul pada
 ## UML Diagram
 
 Use Case Diagram
+
 ![Use Case Diagram](https://github.com/pandutanjung/UlasKelas/assets/83505767/bec7b4f2-cd49-461d-b7e7-e24fae7fdebe)
 
 Activity Diagram
