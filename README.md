@@ -33,19 +33,19 @@ To run tests, run the following command
 ## UML Diagram
 
 Use Case Diagram
-![Use Case Diagram](https://github.com/pandutanjung/UlasKelas/assets/83505767/fdc023a6-cff5-4dc9-8e1d-cb4b0dfc0120)
+![Use Case Diagram](https://github.com/pandutanjung/UlasKelas/assets/83505767/bec7b4f2-cd49-461d-b7e7-e24fae7fdebe)
 
 Activity Diagram
 
-![Activity Diagram](https://github.com/pandutanjung/UlasKelas/assets/83505767/480f2d59-0bcb-431b-8277-f9a1ddd0c55c)
+![Activity Diagram](https://github.com/pandutanjung/UlasKelas/assets/83505767/36587327-3f88-4de0-80e3-7b3712f6d875)
 
 Class Diagram
 
-![Class Diagram](https://github.com/pandutanjung/UlasKelas/assets/83505767/f48b7581-1378-41ab-80a5-f58d575c62fd)
+![Class Diagram](https://github.com/pandutanjung/UlasKelas/assets/83505767/25b9bb5d-64bd-401d-bd53-4b0441173ceb)
 
 Sequence Diagram
 
-![Sequence Diagram](https://github.com/pandutanjung/UlasKelas/assets/83505767/700b4a60-656b-4172-9341-c93056192d22)
+![Sequence Diagram](https://github.com/pandutanjung/UlasKelas/assets/83505767/72fc73a1-787a-4684-953a-78824a1ecffa)
 
 ## Tech Stack
 
